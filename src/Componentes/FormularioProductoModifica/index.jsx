@@ -5,6 +5,7 @@ import FormularioProducto from '../FormularioProducto';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import './estilos.css';
+import { actual } from '../../URLs';
 
 
 function FormularioModifProducto() {
@@ -55,7 +56,7 @@ function FormularioModifProducto() {
             formData.append("costo", input.costo);
             formData.append("imagen", input.imagen);//este nombre "imagen" es el q va en upload.single("imagen") en el back
 
-            await fetch(`http://localhost:3001/productos/${_id}`, {
+            await fetch(`${actual}/productos/${_id}`, {
                 method: "PUT",
                 body: formData,
             });

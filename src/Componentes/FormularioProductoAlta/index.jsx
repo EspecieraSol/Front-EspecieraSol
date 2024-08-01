@@ -4,6 +4,7 @@ import { getAllProds } from '../../Redux/Actions';
 import FormularioProducto from '../FormularioProducto';
 import Swal from 'sweetalert2';
 import './estilos.css';
+import { actual } from '../../URLs';
 
 
 function FormularioProductoAlta({operacion}) {
@@ -84,7 +85,7 @@ function FormularioProductoAlta({operacion}) {
                     formData.append("posicionLista", input.posicionLista);
                     formData.append("imagen", input.imagen);//este nombre "imagen" es el q va en upload.single("imagen") en el back
                     
-                    await fetch(`http://localhost:3001/productos`, {
+                    await fetch(`${actual}/productos`, {
                         method: "POST",
                         body: formData,
                     });
