@@ -3,7 +3,6 @@ import './styles.css';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import logo from '../../Imagenes/logo.png';
-import textLogo from '../../Imagenes/texto-logo.png';
 import { Link } from 'react-router-dom';
 
 function Footbar() {
