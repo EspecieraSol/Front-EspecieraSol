@@ -1,0 +1,18 @@
+.pagado{
+    color: green;
+}
+.debe{
+    color: red;
+}
+.cont-modal-entregaCliente {
+    position: fixed;
+    top: 10%;
+    left: 5%;
+    width: 90%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(75, 76, 77);
+    z-index: 1;
+}
