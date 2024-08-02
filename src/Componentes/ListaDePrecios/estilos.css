@@ -122,13 +122,13 @@
 /* responsive */
 @media screen and (max-width: 800px){
     .cont-padre-lista-precios{
-        width: 95%; 
+        width: 98%; 
         height: auto; 
         display: flex;
         flex-direction: column;
     }
     .cont-gral-listaDePrecios {
-        width: 95%; 
+        width: 98%; 
         height: auto; 
         display: flex;
         justify-content: center;
