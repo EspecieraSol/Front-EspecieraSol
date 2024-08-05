@@ -9,7 +9,7 @@ export const AppProvider = ({children}) => {
 
     //const userLogueado = userLog();
     //estado user logeado
-    const [userLog, setUserLog] = useState(null); 
+    const [userLog, setUserLog] = useState(null);
     //estado nombreUser
     const [nombre, setNombre] = useState();
     //estado para login
@@ -43,7 +43,7 @@ export const AppProvider = ({children}) => {
         if(userLogin){
             setUserLog(userLogin);
             setIsAuthenticated(true);
-            setNombre(userLogin.user.nombre)
+            setNombre(userLogin.user?.nombre)
         }
     }, []);
     

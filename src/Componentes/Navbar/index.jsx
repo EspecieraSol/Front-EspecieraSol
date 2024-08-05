@@ -1,4 +1,6 @@
 import React, { useContext, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { resetLogin, } from '../../Redux/Actions';
 import logo from '../../Imagenes/logo.png';
 import textLogo from '../../Imagenes/texto-logo.png';
 import { Link } from 'react-router-dom';
@@ -19,7 +21,7 @@ const Navbar = () => {
     const [muestraMenuVentas, setMuestraMenuVentas] = useState(false); //estado menú ventas
     const [muestraMenuReportes, setMuestraMenuReportes] = useState(false); //estado menú reportes
     const contexto = useContext(AppContexto);
-
+    const dispatch = useDispatch();
 
     const handleMouseEnterCliente = () => {
         setMuestraMenuClientes(true);
@@ -70,9 +72,9 @@ const Navbar = () => {
                 logout();
                 contexto.setUserLog(null);
                 contexto.logout();
+                dispatch(resetLogin());
             }
-        });
-        
+        });        
     };
 
     
