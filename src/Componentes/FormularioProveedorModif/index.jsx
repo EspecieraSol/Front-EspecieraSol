@@ -1,53 +1,111 @@
-import React, {  useState } from 'react';
-
-import { useDispatch,  } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllProds, getProductoById } from '../../Redux/Actions';
+import FormularioProducto from '../FormularioProducto';
+import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { getAllProveedores, modificaProveedor, } from '../../Redux/Actions';
-import FormularioCliente from '../FormularioCliente';
+import './estilos.css';
 
-const FormularioProveedorModif = ({provAeditar, setProvAeditar }) => {
-    
-    const [formData, setFormData] = useState(provAeditar);
+function FormularioModifProducto() {
+    const { _id } = useParams();
+    const prod = useSelector(state => state.producto);
+    const [input, setInput] = useState({});
     const [errors, setErrors] = useState({});
+    const [previewSource, setPreviewSource] = useState('');
+    const productos = useSelector(state => state.productos);
+    const [listaProd, setListaProd] = useState([]);
     const dispatch = useDispatch();
+
+    const previewFile = (file) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+            setPreviewSource(reader.result);
+        };
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        if (name === "imagen") {
+            setInput({ ...input, imagen: e.target.files[0] });
+            previewFile(e.target.files[0]);
+        } else {
+            setInput({ ...input, [name]: value });
+        }
+
+        if (value) {
+            const errores = { ...errors };
+            delete errores[name];
+            setErrors(errores);
+        }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        Swal.fire({
-            title: "Está segur@ de realizar los cambios?",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "SI",
-            cancelButtonText: "NO"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    title: "OK!",
-                    text: "Cambios realizados!!",
-                    icon: "success"
-                });
-                dispatch(modificaProveedor(formData)); //cambiar
-                dispatch(getAllProveedores());
-                setProvAeditar(null);
-                setErrors({});
-            }
+        try {
+            let formData = new FormData();
+            formData.append("nombre", input.nombre);
+            formData.append("unidadMedida", input.unidadMedida);
+            formData.append("precioKg", input.precioKg);
+            formData.append("envase", input.envase);
+            formData.append("posicionLista", input.posicionLista);
+            formData.append("costo", input.costo);
+            formData.append("imagen", input.imagen);
+
+            await fetch(`http://localhost:3001/productos/${_id}`, {
+                method: "PUT",
+                body: formData,
+            });
+            Swal.fire({
+                title: "OK",
+                text: "Producto modificado con exito",
+                icon: "success"
+            });
+            dispatch(getAllProds());
+            setPreviewSource('');
             window.location.reload();
-        });        
+        } catch (error) {
+            console.log(error);
+        }
     };
 
-    
-    return (
-        <FormularioCliente 
-            formData={formData} errors={errors} handleChange={handleChange} handleSubmit={handleSubmit}
-        />
-    );
-};
+    useEffect(() => {
+        dispatch(getProductoById(_id));
+        dispatch(getAllProds());
+    }, [_id, dispatch]);
 
-export default FormularioProveedorModif;
+    useEffect(() => {
+        if (prod) {
+            setInput({
+                nombre: prod.nombre,
+                unidadMedida: prod.unidadMedida,
+                precioKg: prod.precioKg,
+                envase: prod.envase,
+                costo: prod.costo,
+                posicionLista: prod.posicionLista,
+                imagen: prod.imagen
+            });
+            setPreviewSource('');
+        }
+    }, [prod]);
+
+    useEffect(() => {
+        setListaProd(productos);
+    }, [productos]);
+
+    return (
+        <div className='cont-modifProd-formulario'>
+            <FormularioProducto
+                operacion={"modifica"}
+                productos={listaProd}
+                handleSubmit={handleSubmit}
+                input={input}
+                handleChange={handleChange}
+                errors={errors}
+                previewSource={previewSource}
+            />
+        </div>
+    );
+}
+
+export default FormularioModifProducto;
