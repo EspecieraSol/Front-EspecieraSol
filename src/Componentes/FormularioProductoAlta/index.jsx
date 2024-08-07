@@ -4,7 +4,6 @@ import { getAllProds } from '../../Redux/Actions';
 import FormularioProducto from '../FormularioProducto';
 import Swal from 'sweetalert2';
 import './estilos.css';
-import { actual } from '../../URLs';
 
 
 function FormularioProductoAlta({operacion}) {
@@ -64,7 +63,8 @@ function FormularioProductoAlta({operacion}) {
         if (!input.precioKg) newErrors.precioKg = 'Precio x Kg es requerido';
         if (!input.costo) newErrors.costo = 'Costo es requerido';
         if (!input.envase) newErrors.envase = 'Envase es requerido';
-        if (!previewSource) newErrors.imagen = 'La imágen es requerida';
+        if (!input.posicionLista) newErrors.posicionLista = 'Posición requerido';
+        //if (!previewSource) newErrors.imagen = 'La imágen es requerida';
         if (!input.posicionLista) newErrors.imagen = 'La posición es requerida';
         setErrors(newErrors);
 
@@ -85,7 +85,7 @@ function FormularioProductoAlta({operacion}) {
                     formData.append("posicionLista", input.posicionLista);
                     formData.append("imagen", input.imagen);//este nombre "imagen" es el q va en upload.single("imagen") en el back
                     
-                    await fetch(`${actual}/productos`, {
+                    await fetch(`http://localhost:3001/productos`, {
                         method: "POST",
                         body: formData,
                     });
