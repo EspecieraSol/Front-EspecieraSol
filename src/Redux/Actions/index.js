@@ -5,17 +5,18 @@ import {
     RESET_CLIENTE, BUSCA_PRODUCTO_POR_NOMBRE, GET_ALL_REMITOS, CREA_REMITO,  BUSCA_CLIENTE_POR_CUIT, ULTIMO_REMITO,
     GET_REMITOS_CLIENTE, GET_REMITO_BY_ID, ORDENA_FECHA, FILTRA_FECHAS_REMITOS, GET_ALL_REMITOS_COMPRA,
     GET_REMITOS_PROVEEDOR, GET_REMITO_COMPRA_BY_ID,  MODIFICA_ANTICIPO_COMPRA, ULTIMO_REMITO_COMPRA,
-    RESET_ULTIMO_REMITO_COMPRA, GET_GASTOS_MES, GET_REPORTES_MES_AÑO, BUSCA_PROVEEDOR_POR_CUIT, ORDENA_FECHA_REMITO_COMPRA,
-    GET_GASTOS_BY_ID, GET_REPORTE_MES, GET_PRODUCTO_BY_ID, RESET_REMITO, LOGIN, RESET_LOGIN,
+    RESET_ULTIMO_REMITO_COMPRA, GET_GASTOS_MES, GET_REPORTES_MES_AÑO, BUSCA_PROVEEDOR_POR_CUIT,
+    ORDENA_FECHA_REMITO_COMPRA, GET_GASTOS_BY_ID, GET_REPORTE_MES, GET_PRODUCTO_BY_ID, RESET_REMITO, LOGIN, RESET_LOGIN,
+    EDITA_ENTREGA,
 } from './actionType';
 import { actual } from '../../URLs';
 import Swal from 'sweetalert2';
 
 
 //---LOGIN--------------------------------------------------------
-export function login(data){
+export function login(data){ console.log("enetré")
     return async function (dispatch) {
-        const resp = await axios.post(`${actual}/auth/login`, data); 
+        const resp = await axios.post(`${actual}/auth/login`, data); console.log("dataBack:", resp.data)
         //asigno data del user al localStorage
         localStorage.setItem("userData", JSON.stringify(resp.data));
         dispatch({ type: LOGIN, payload: resp.data });        
@@ -125,7 +126,6 @@ export function eliminaProducto(_id){
         dispatch({type: ELIMINA_PRODUCTO, payload: resp.data});
     }
 }
-
 //--proveedores-----------------------------------------------------
 //trae proveedores
 export function getAllProveedores() { 
@@ -202,8 +202,8 @@ export function creaRemito(data){
     }
 }
 //trae remitos de un cliente
-export function getRemitosCliente(cuit, estado){
-    return async function(dispatch){ 
+export function getRemitosCliente(cuit, {estado}){
+    return async function(dispatch){  
         const resp = await axios.get(`${actual}/remitos/remitosCliente/${cuit}?estado=${estado}`);       
         dispatch({type: GET_REMITOS_CLIENTE, payload:resp.data});
     }
@@ -241,7 +241,20 @@ export function agregaEntrega(_id, data){
         await axios.post(`${actual}/remitos/entrega/${_id}`, data);
     }
 }
-
+//-------ENTREGAS----
+//edita entrega
+export function editaEntrega(idRemito, idEntrega, entrega, metodoPago){
+    return async function(dispatch) {
+        const resp = await axios.put(`${actual}/remitos/editaEntrega/${idRemito}/entrega/${idEntrega}`, entrega, metodoPago);
+        dispatch({type: EDITA_ENTREGA, payload: resp.data});
+    }
+}
+//elimina entrega
+export function eliminaEntrega(idRemito, idEntrega){
+    return async function() {
+        await axios.delete(`${actual}/remitos/eliminaEntrega/${idRemito}/entrega/${idEntrega}`);
+    }
+}
 //----actions remitos COMPRAS-----------------------------------------------------------
 export function getAllCompras(detalle, fechaDesde, fechaHasta) {
     return async function(dispatch){
