@@ -142,9 +142,9 @@ function ListaRemitosVentas() {
                 dispatch(getAllRemitos( estado, fechaDesde, fechaHasta));
                 break;
             case 'mesActual':
-                setEstado("todos");
                 setFechaDesde('');
                 setFechaHasta('');
+                setEstado("todos");
                 dispatch(getAllRemitos(estado, fechaDesde, fechaHasta));
                 break;
             default:
