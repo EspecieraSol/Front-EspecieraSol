@@ -120,6 +120,17 @@ export function buscaProdPorNombre(nombre) {
         dispatch({type: BUSCA_PRODUCTO_POR_NOMBRE, payload: resp.data});
     }
 }
+export function creaProducto(data){
+    return async function() {
+        await axios.post(`${actual}/productos`, data);
+    }
+}
+//modif prod
+export function modifProd(_id, data){
+    return async function(){
+        await axios.put(`${actual}/productos/${_id}`, data);
+    }
+}
 //elimina prod
 export function eliminaProducto(_id){
     return async function(dispatch){
