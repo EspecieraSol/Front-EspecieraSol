@@ -9,6 +9,7 @@ import {
     ORDENA_FECHA_REMITO_COMPRA, GET_GASTOS_BY_ID, GET_REPORTE_MES, GET_PRODUCTO_BY_ID, RESET_REMITO, LOGIN, RESET_LOGIN,
     EDITA_ENTREGA,
     CALC_SALDO_ANTERIOR,
+    RESET_PROV,
 } from './actionType';
 import { actual } from '../../URLs';
 import Swal from 'sweetalert2';
@@ -180,7 +181,12 @@ export function eliminaProveedor(_id){
         await axios.delete(`${actual}/proveedores/${_id}`);
     }    
 }
-
+//reset prov
+export function resetProv(){
+    return{
+        type: RESET_PROV,
+    }
+}
 //--remitos ventas-----------------------------------------------------
 //trae remitos
 export function getAllRemitos(estado, fechaDesde, fechaHasta){
