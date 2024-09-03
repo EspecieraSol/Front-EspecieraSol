@@ -7,13 +7,15 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import './estilos.css';
 
 function FormRemito({ tipo }) {
-    //estado nomb apell
-    const [nombreApellido, setNombreApellido] = useState('');
+    
+    const clientes = useSelector(state => state.clientes);
+    const productos = useSelector(state => state.productos);
+    const [nombreApellido, setNombreApellido] = useState(''); //estado nomb apell
     const traeCliente = useSelector(state => state.cliente);
     const saldoAnt = useSelector(state => state.saldoAnterior);
     const numUltimoRemito = useSelector(state => state.ultimoRemito);
-    const productos = useSelector(state => state.productos);
-    const clientes = useSelector(state => state.clientes);
+    
+    
     //estados para el manejo del cliente  
     const [cliente, setCliente] = useState();
     const [clienteExiste, setClienteExiste] = useState(true);
@@ -39,12 +41,12 @@ function FormRemito({ tipo }) {
         }
         setCliente(null);
         setHaBuscadoCliente(true); // Indicar que se ha buscado un cliente
-        let separo = nombreApellido.split(' ');
+        /* let separo = nombreApellido.split(' ');
         const data = {
             nombre: separo[0], 
-            apellido: separo[1]
-        }; 
-        dispatch(buscaClientePorNombre(data))
+            apellido: separo[1] 
+        }; */ 
+        dispatch(buscaClientePorNombre(nombreApellido)); //cambiar a busca cliente por _id
     };
     const handleChangeCantidad = (e) => {
         const cant = e.target.value;

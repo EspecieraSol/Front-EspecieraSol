@@ -94,7 +94,7 @@ function Remito({ operacion, fecha, numUltimoRemito, cliente, clienteExiste, ite
                 estado: data.estado,
                 bultos: bultosActual,
                 transporte: transporteActual,
-            };
+            }; 
             dispatch(creaRemito(dataBack));
             setData({        
                 condicion_pago: "",
