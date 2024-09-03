@@ -104,7 +104,7 @@ function Remito({ operacion, fecha, numUltimoRemito, cliente, clienteExiste, ite
                 title: 'Creado con exito !!',
                 icon: 'success'
             }, navigate('/listaRemitosVentas'));            
-            //window.location.reload()
+            window.location.reload()
             
         }
     };
