@@ -105,7 +105,7 @@ function Remito({ operacion, fecha, numUltimoRemito, cliente, clienteExiste, ite
                 icon: 'success'
             }, navigate('/listaRemitosVentas')); 
             dispatch(getAllRemitos());           
-            //window.location.reload()            
+            window.location.reload()            
         }
     };
     //función crea las filas de la tabla 8 y llena las q sean necesarias
