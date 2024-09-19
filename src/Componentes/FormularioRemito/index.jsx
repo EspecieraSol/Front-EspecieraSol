@@ -24,11 +24,11 @@ function FormRemito({ tipo }) {
     const [pedido, setPedido] = useState([]); 
     // Estados item
     const [unidadMedida, setUnidadMedida] = useState("");
-    const [cantidad, setCantidad] = useState("");
+    const [cantidad, setCantidad] = useState(); 
     const [detalle, setDetalle] = useState("");
-    const [unitario, setUnitario] = useState("");
-    const [costo, setCosto] = useState("");
-    const [importe, setImporte] = useState("");
+    const [unitario, setUnitario] = useState();
+    const [costo, setCosto] = useState();
+    const [importe, setImporte] = useState();
     const dispatch = useDispatch();
 
     const handleOnChangeNA = (e) => {
@@ -40,12 +40,7 @@ function FormRemito({ tipo }) {
             return;
         }
         setCliente(null);
-        setHaBuscadoCliente(true); // Indicar que se ha buscado un cliente
-        /* let separo = nombreApellido.split(' ');
-        const data = {
-            nombre: separo[0], 
-            apellido: separo[1] 
-        }; */ 
+        setHaBuscadoCliente(true); // Indicar que se ha buscado un cliente 
         dispatch(buscaClientePorNombre(nombreApellido)); //cambiar a busca cliente por _id
     };
     const handleChangeCantidad = (e) => {
@@ -59,7 +54,7 @@ function FormRemito({ tipo }) {
             cant = parseInt(datoCantidad);
             setCantidad(cant);
         }
-        totItem(cant, unitario);;
+        totItem(cant, unitario);
     };
     const handleChangeDetalle = (e) => {
         const producto = e.target.value;
@@ -154,7 +149,7 @@ function FormRemito({ tipo }) {
     useEffect(()=>{
         dispatch(getAllClientes());       
     },[dispatch]);
-
+    //para productos y último remito
     useEffect(() => {
         dispatch(getAllProds());
         dispatch(traeUltimoRemito());
@@ -299,8 +294,8 @@ function FormRemito({ tipo }) {
                                 return (
                                     <tr key={item.index}>
                                         {
-                                            item.detalle === "Bombones de Higo con nuez" ?
-                                            <td>{item.cantidad}unid</td> :
+                                            item.unidadMedida === "unidad" ?
+                                            <td>{item.cantidad}u</td> :
                                             <td>{item.cantidad}kg</td>
                                         }
                                         <td>{item.detalle}</td>

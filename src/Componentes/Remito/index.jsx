@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import logoRemito from '../../Imagenes/logoYtexto.jpg';
 import { useDispatch, useSelector } from 'react-redux';
-import { creaRemito, getAllRemitos, getRemitosCliente, resetCliente } from '../../Redux/Actions';
+import { creaRemito, getAllRemitos, getRemitosCliente, resetCliente, traeUltimoRemito } from '../../Redux/Actions';
 import { formatDate, formatMoney, cortaPalabra } from '../../Helpers';
 import Swal from 'sweetalert2';
 import './estilos.css';
@@ -105,7 +105,9 @@ function Remito({ operacion, fecha, numUltimoRemito, cliente, clienteExiste, ite
             setTransporte("");
             setBultos("");
             dispatch(getAllRemitos());
-
+            //dispatch(traeUltimoRemito());
+            //dispatch(resetCliente());
+            window.location.reload();
         }
     };
     //función crea las filas de la tabla 8 y llena las q sean necesarias

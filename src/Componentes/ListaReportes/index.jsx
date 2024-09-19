@@ -198,9 +198,9 @@ function ListaReportes() {
                 <tr key={index}>
                   <td>{dayData.day}</td>
                   <td>{dayData.totKgs}</td>
-                  <td>{dayData.ventas}</td>
-                  <td>{dayData.compras}</td>
-                  <td>{dayData.gastos}</td>
+                  <td>${formatMoney(dayData.ventas)}</td>
+                  <td>${formatMoney(dayData.compras)}</td>
+                  <td>${formatMoney(dayData.gastos)}</td>
                 </tr>
               ))}
             </tbody>
