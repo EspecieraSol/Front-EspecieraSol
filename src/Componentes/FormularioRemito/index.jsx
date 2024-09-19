@@ -76,7 +76,7 @@ function FormRemito({ tipo }) {
     };
     // Función calcula tot import item
     const totItem = (cantidad, unitario) => {
-        const tot = cantidad * unitario;
+        const tot =  cantidad * unitario;
         setImporte(tot);
         return tot;
     };
