@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import logoRemito from '../../Imagenes/logoYtexto.jpg';
 import { useDispatch, useSelector } from 'react-redux';
-import { creaRemito, getAllRemitos, getRemitosCliente, resetCliente, traeUltimoRemito } from '../../Redux/Actions';
+import { creaRemito, getAllRemitos, getRemitosCliente, resetCliente } from '../../Redux/Actions';
 import { formatDate, formatMoney, cortaPalabra } from '../../Helpers';
 import Swal from 'sweetalert2';
 import './estilos.css';
@@ -50,7 +50,7 @@ function Remito({ operacion, fecha, numUltimoRemito, cliente, clienteExiste, ite
             }
             return tot += Number(item.cantidad);
         });
-        return tot;
+        return tot.toFixed(2); //limita a 2 decimales
     };
     //crea el Remito/Venta
     const handleOnSubmit = (e) => {

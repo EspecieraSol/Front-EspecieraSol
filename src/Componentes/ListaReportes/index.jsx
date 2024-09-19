@@ -197,7 +197,7 @@ function ListaReportes() {
               {newReporteMes?.map((dayData, index) => (
                 <tr key={index}>
                   <td>{dayData.day}</td>
-                  <td>{dayData.totKgs}</td>
+                  <td>{dayData.totKgs.toFixed(2)}</td>
                   <td>${formatMoney(dayData.ventas)}</td>
                   <td>${formatMoney(dayData.compras)}</td>
                   <td>${formatMoney(dayData.gastos)}</td>
