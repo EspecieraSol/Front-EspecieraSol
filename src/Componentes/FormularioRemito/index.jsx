@@ -49,9 +49,17 @@ function FormRemito({ tipo }) {
         dispatch(buscaClientePorNombre(nombreApellido)); //cambiar a busca cliente por _id
     };
     const handleChangeCantidad = (e) => {
-        const cant = e.target.value;
-        setCantidad(cant);
-        totItem(cant, unitario);
+        const datoCantidad = e.target.value;
+        let cant = 0;
+
+        if(datoCantidad.includes('.' || ',')){
+            cant = parseFloat(datoCantidad);
+            setCantidad(cant);
+        }else{
+            cant = parseInt(datoCantidad);
+            setCantidad(cant);
+        }
+        totItem(cant, unitario);;
     };
     const handleChangeDetalle = (e) => {
         const producto = e.target.value;
