@@ -83,12 +83,6 @@ function Remito({
                 text: "Ingrese Cant de Bultos",
                 icon: 'error'
             });
-        }else if(transporteActual === ''){
-            Swal.fire({
-                title: 'Faltan datos !!',
-                text: "Ingrese Transporte",
-                icon: 'error'
-            });
         }else{        
             const dataBack = {
                 numRemito: nuevoNumeroRemito,
