@@ -33,7 +33,7 @@ function Remito({
         estado: "",
     }); 
     const [bultosActual, setBultos] = useState(bultos || '');
-    const [transporteActual, setTransporte] = useState(transporte || '');  
+    //const [transporteActual, setTransporte] = useState(transporte || '');  
     const remitoAmostrar = useSelector(state => state.remito);
     //const {saldoAnt} = useSelector(state => state.saldoAnterior); 
     const dispatch = useDispatch();
@@ -94,7 +94,7 @@ function Remito({
                 condicion_pago: data.condicion_pago,
                 estado: data.estado,
                 bultos: bultosActual,
-                transporte: transporteActual,
+                //transporte: transporteActual,
             }; 
             dispatch(creaRemito(dataBack));
             setData({        
@@ -105,7 +105,7 @@ function Remito({
                 title: 'Creado con exito !!',
                 icon: 'success'
             });
-            setTransporte("");
+            //setTransporte("");
             setBultos("");
             dispatch(getAllRemitos());
             //dispatch(traeUltimoRemito());
