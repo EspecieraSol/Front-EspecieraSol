@@ -8,7 +8,7 @@ import './estilos.css';
 
 
 function Remito({ 
-    operacion, fecha, numUltimoRemito, cliente, clienteExiste, items, totPedido, bultos, transporte, /* saldoAnt */ 
+    operacion, fecha, numUltimoRemito, cliente, clienteExiste, items, totPedido, bultos, /* transporte ,*/ /* saldoAnt */ 
 }) { 
 
     let nuevoNumeroRemito = 0; 
