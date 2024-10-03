@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { creaGasto, getGastosMesActual } from '../../Redux/Actions';
+import { creaGasto, getGastosMesActual, eliminaGasto} from '../../Redux/Actions';
 import { fechaArg, formatMoney } from '../../Helpers';
-import EditIcon from '@mui/icons-material/Edit';
 import { AppContexto } from '../../Contexto';
+import EditIcon from '@mui/icons-material/Edit';
 import ModalModifGasto from '../ModalModifGasto';
-import BotonEliminaGasto from '../BotoneliminaGasto';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import Swal from 'sweetalert2';
 import './estilos.css';
 
 function CreaGasto() {
@@ -88,7 +89,7 @@ function CreaGasto() {
         e.preventDefault();
         if(validaInputs()){
             const data = {
-                fecha: fechaActual,
+                fecha: fechaArg(fechaCreacion),
                 descripcion,
                 monto,
             }
@@ -98,8 +99,31 @@ function CreaGasto() {
             dispatch(getGastosMesActual(year, month));
         }
     };
-
-    // Función para formatear la fecha a 'YYYY-MM-DD'
+    //elimina un gasto
+    const handleOnClickElimina = (_id) => {
+        try {
+            const resp = dispatch(eliminaGasto(_id));
+            if (resp) {
+                Swal.fire({
+                    text: 'Eliminado con éxito!!',
+                    icon: 'success'
+                });
+                dispatch(getGastosMesActual(year, month)); // Actualiza los gastos del mes actual
+            } else {
+                Swal.fire({
+                    text: 'Algo salió mal!!',
+                    icon: 'error'
+                });
+            }
+        } catch (error) {
+            console.error("Error al eliminar gasto:", error);
+            Swal.fire({
+                text: 'Algo salió mal!!',
+                icon: 'error'
+            });
+        }
+    }
+    // Función para formatear la fecha a 'YYYY-MM-DD' para que se muestre en el input inicialmnt
     const obtenerFechaActual = () => {
         const fecha = new Date();
         const year = fecha.getFullYear();
@@ -194,7 +218,13 @@ function CreaGasto() {
                                                 <button onClick={(e) => handleOnClickModal(g)}>
                                                     <EditIcon />
                                                 </button>
-                                                <BotonEliminaGasto _id={g._id} />
+                                                
+                                                <button
+                                                    className='btn-elim-cliente'
+                                                    onClick={() => { handleOnClickElimina(g._id) }}
+                                                >
+                                                    <DeleteForeverIcon />
+                                                </button>
                                             </div>
                                         </td>
                                     </tr>
