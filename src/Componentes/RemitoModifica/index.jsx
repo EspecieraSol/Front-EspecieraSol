@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { modificaRemito } from '../../Redux/Actions';
+import { formatDate, formatMoney } from '../../Helpers';
+import Swal from 'sweetalert2';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import logoRemito from '../../Imagenes/logoYtexto.jpg';
-import { useDispatch } from 'react-redux';
-import { modificaRemito } from '../../Redux/Actions';
-import { fechaArg, formatDate, formatMoney } from '../../Helpers';
-import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
 import './estilos.css';
 
 function RemitoModifica({ operacion, fechaRemito, cliente, remito, items, totPedido }) {
