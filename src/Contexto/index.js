@@ -9,7 +9,7 @@ export const AppProvider = ({children}) => {
 
     //const userLogueado = userLog();
     //estado user logeado
-    const [userLog, setUserLog] = useState(null);
+    const [userLog, setUserLog] = useState(null); 
     //estado nombreUser
     const [nombre, setNombre] = useState();
     //estado para login
@@ -26,6 +26,8 @@ export const AppProvider = ({children}) => {
     const[modalRemito, setModalRemito] = useState(false);
     //estado modal entrega cliente
     const[modalEntregaCliente, setModalEntregaCliente] = useState(false);
+    //estado modal edita entrega 
+    const[modalEditaEntrega, setModalEditaEntrega] = useState(false);
     //estado modal modif Gasto
     const[modalModifGasto, setModalModifGasto] = useState(false);
     //estado para el SEARCH
@@ -37,7 +39,7 @@ export const AppProvider = ({children}) => {
     const logout = () => {
         setIsAuthenticated(false);
     };
-
+    /* efecto para el loguin */
     useEffect(()=>{
         const userLogin = userLogData(); 
         if(userLogin){
@@ -64,6 +66,8 @@ export const AppProvider = ({children}) => {
                 setModalRemito,
                 modalEntregaCliente,
                 setModalEntregaCliente,
+                modalEditaEntrega,
+                setModalEditaEntrega,
                 modalModifGasto,
                 setModalModifGasto,
                 search,
