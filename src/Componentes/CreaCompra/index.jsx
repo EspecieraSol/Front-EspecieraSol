@@ -6,6 +6,7 @@ import TablaItemsRemitoCompra from '../TablaItemsRemitoCompra';
 import Swal from 'sweetalert2';
 //import FormularioCompra from '../FormularioCompra';
 
+
 function FormularioCompras() {
     const tipoOperacion = 'compra';
     const productos = useSelector(state => state.productos);
