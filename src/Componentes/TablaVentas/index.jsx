@@ -1,5 +1,8 @@
 import React from 'react';
 import { fechaArg, formatMoney } from '../../Helpers';
+import { NavLink } from 'react-router-dom';
+import EditIcon from '@mui/icons-material/Edit';
+import BotonEliminaRemitoVenta from '../BotonEliminaRemitoVenta';
 import './estilos.css';
 
 function TablaVentas({ ventas }) {
@@ -47,7 +50,9 @@ function TablaVentas({ ventas }) {
                         <th>Haber</th>
                         <th>Saldo</th>
                         <th>Detalle Saldo</th>
-                        <th>Condición de Pago</th>
+                        <th>Cond. de Pago</th>
+                        <th>Ver</th>
+                        <th>Edita/Elim</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -63,6 +68,34 @@ function TablaVentas({ ventas }) {
                             </td>
                             <td >{r.saldoText}</td>
                             <td >{r.condicion_pago}</td>
+                            <td>
+                                <NavLink to={`/detalleRemitoVenta/${r._id}`}>
+                                    <button>Ver</button>
+                                </NavLink>
+                            </td>
+                            <td style={{ width: '50px' }}>
+                                    <div style={{ display: 'flex' }} key={r._id}>
+                                        {/* btn edita */}
+                                        {
+                                            r.tipoRemito === 'Venta' ? (
+                                                <NavLink to={`/editaRemito/${r._id}`}>
+                                                    <button>
+                                                        <EditIcon />
+                                                    </button>
+                                                </NavLink>
+                                            ) : (
+                                                <NavLink to={`/editaPagoRemito/${r._id}`}>
+                                                    <button>
+                                                        <EditIcon />
+                                                    </button>
+                                                </NavLink>
+                                            )
+                                            
+                                        }
+                                        {/* btn elim */}
+                                        <BotonEliminaRemitoVenta _id={r._id} />
+                                    </div>
+                                </td>
                         </tr>
                     ))}
                 </tbody>
@@ -74,7 +107,7 @@ function TablaVentas({ ventas }) {
                         <td className={totalSaldo}>
                             ${formatMoney(totalSaldo)}
                         </td>
-                        <td colSpan="2"></td>
+                        <td colSpan="4"></td>
                     </tr>
                 </tfoot>
             </table>
