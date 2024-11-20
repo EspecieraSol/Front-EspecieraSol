@@ -17,7 +17,7 @@ function FormularioPagoCliente({ tipoR }) {
         cuit: 0,
         tipoRemito: 'Pago',
         totPedido: 0,
-        detallePago: '',
+        condicion_pago: '',
     });
 
     // Función para formatear la fecha a 'YYYY-MM-DD'
@@ -47,6 +47,7 @@ function FormularioPagoCliente({ tipoR }) {
                 cuit: items.cuit,
                 cliente: items.cliente,
                 tipoRemito: items.tipoRemito,
+                condicion_pago: items.condicion_pago
             };
 
             if (tipoR === 'Pago') {
@@ -112,7 +113,7 @@ function FormularioPagoCliente({ tipoR }) {
                 cuit: remitoPago.cuit || 0,
                 tipoRemito: remitoPago.tipoRemito || 'Pago',
                 totPedido: remitoPago.totPedido || 0,
-                detallePago: remitoPago.detallePago || '',
+                condicion_pago: remitoPago.condicion_pago || '',
             });
         }
     }, [remitoPago, tipoR]);
@@ -164,11 +165,11 @@ function FormularioPagoCliente({ tipoR }) {
 
                 {/* Detalle de Pago */}
                 <div className="cont-item">
-                    <label className="label-crea-compra">Detalle de pago:</label>
+                    <label className="label-crea-compra">Cond de pago:</label>
                     <input
                         type="text"
-                        id="detallePago"
-                        value={items.detallePago}
+                        id="condicion_pago"
+                        value={items.condicion_pago}
                         onChange={handleOnChange}
                         className="input-detallePago-anticipo"
                     />

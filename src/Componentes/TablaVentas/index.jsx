@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { fechaArg, formatMoney } from '../../Helpers';
 import { NavLink } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
 import BotonEliminaRemitoVenta from '../BotonEliminaRemitoVenta';
 import './estilos.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { buscaClientePorCuit } from '../../Redux/Actions';
 
-function TablaVentas({ ventas }) {
+function TablaVentas({ ventas, cuit }) {
+
+    const dispatch = useDispatch();
+    const cliente = useSelector(state => state.cliente);
     // Función para calcular el saldo
     const calculaSaldo = (remitos) => {
         let saldo = 0; // Saldo inicial
@@ -39,7 +44,13 @@ function TablaVentas({ ventas }) {
     const totalHaber = arrayMovimientos?.reduce((acc, r) => acc + (r.haber || 0), 0);
     const totalSaldo = arrayMovimientos?.length > 0 ? arrayMovimientos[arrayMovimientos.length - 1].saldo : 0;
 
+    useEffect(()=>{
+        dispatch(buscaClientePorCuit(cuit));
+    },[cuit, dispatch]);
+
     return (
+        <div className='cont-tabla-remitosCliente'>
+            <h2>Cliente: {cliente.nombreApellido}</h2>
             <table className="client-table ">
                 <thead>
                     <tr>
@@ -111,7 +122,7 @@ function TablaVentas({ ventas }) {
                     </tr>
                 </tfoot>
             </table>
-        
+        </div>
     );
 }
 

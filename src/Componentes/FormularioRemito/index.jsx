@@ -347,12 +347,13 @@ function FormRemito({ tipo }) {
                         <td></td>
                         <td></td>
                         <td>{calculaTotPedido()}</td>
+                        <td></td>
                     </tfoot>
                 </table>
             </div>
 
             {/* Remito */}
-            <div className='cont-remito-pedido'>
+            <div className='cont-remito-pedido-ventas'>
                 <Remito 
                     operacion={"venta"} 
                     fecha={fechaCreacion}
