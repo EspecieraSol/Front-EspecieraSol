@@ -71,13 +71,7 @@ function Remito({
                 text: "Ingrese Cond.venta",
                 icon: 'error'
             });
-        }/* else if(!data.estado){
-            Swal.fire({
-                title: 'Faltan datos !!',
-                text: "Ingrese Estado",
-                icon: 'error'
-            });
-        } */else if(!bultosActual){
+        }else if(!bultosActual){
             Swal.fire({
                 title: 'Faltan datos !!',
                 text: "Ingrese Cant de Bultos",
