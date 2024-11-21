@@ -112,13 +112,13 @@ function TablaVentas({ ventas, cuit }) {
             </tbody>
             <tfoot>
                 <tr>
-                    <td colSpan="3">Totales</td>
+                    <td colSpan="4">Totales</td>
                     <td>${formatMoney(totalDebe)}</td>
                     <td>${formatMoney(totalHaber)}</td>
                     <td className={totalSaldo}>
                         ${formatMoney(totalSaldo)}
                     </td>
-                    <td colSpan="5"></td>
+                    <td colSpan="4"></td>
                 </tr>
             </tfoot>
         </table>
