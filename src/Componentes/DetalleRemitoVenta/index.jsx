@@ -85,19 +85,7 @@ function DetalleRemitoVenta() {
                                     bultos={remito.bultos}
                                     transporte={remito.transporte}
                                     fecha={remito.fecha}
-                                />     
-                                <Remito
-                                    id='remito'
-                                    operacion={"muestra"}
-                                    cliente={cliente}
-                                    clienteExiste={true}
-                                    numUltimoRemito={remito.numRemito}
-                                    items={remito.items}
-                                    totPedido={remito.totPedido}
-                                    bultos={remito.bultos}
-                                    transporte={remito.transporte}
-                                    fecha={remito.fecha}
-                                />                       
+                                />  
                         </div>
                         <div>
                             <button type='button' onClick={handlePrint} className='boton-imprimir'>Imprimir</button>
