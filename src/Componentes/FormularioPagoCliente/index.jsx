@@ -11,6 +11,8 @@ function FormularioPagoCliente({ tipoR }) {
 
     const {_id} = useParams(); // ID del remito (si estás en modificar)
 
+    //estado para el nombre del cliente
+    const [nombreApellido, setNombreApellido] = useState('');
     const [items, setItems] = useState({
         fecha: '',
         cliente: '',
@@ -29,6 +31,10 @@ function FormularioPagoCliente({ tipoR }) {
         return `${year}-${month}-${day}`;
     };
 
+    // Función para manejar el cambio en el input de nombre y apellido
+    const handleOnChangeNA = (e) => {
+        setNombreApellido(e.target.value);
+    };
     const handleOnChange = (e) => {
         setItems({ ...items, [e.target.id]: e.target.value });
     };
@@ -45,7 +51,7 @@ function FormularioPagoCliente({ tipoR }) {
                 fecha: items.fecha,
                 totPedido: items.totPedido,
                 cuit: items.cuit,
-                cliente: items.cliente,
+                cliente: nombreApellido,
                 tipoRemito: items.tipoRemito,
                 condicion_pago: items.condicion_pago
             };
@@ -136,19 +142,23 @@ function FormularioPagoCliente({ tipoR }) {
                 {/* Cliente */}
                 <div className="cont-item">
                     <label className="label-crea-compra">Cliente</label>
-                    <select
-                        id="cliente"
-                        value={items.cliente}
-                        onChange={handleOnChange}
-                        className="input-proveedor-anticipo"
-                    >
-                        <option value="">Seleccione uno</option>
-                        {clientes?.map((p) => (
-                            <option key={p._id} value={p.nombreApellido}>
-                                {p.nombreApellido}
-                            </option>
-                        ))}
-                    </select>
+                    <input
+                        type='text'
+                        id='nombreApellido'
+                        value={nombreApellido}
+                        onChange={(e) => { handleOnChangeNA(e) }}
+                        list="lista-clientes"
+                        className='input-proveedor-anticipo'
+                    />
+                    {/* lista q aparecerá en el input */}
+                    <datalist id="lista-clientes">
+                        {
+                            clientes?.map(c => (
+                                <option key={c._id} value={c.nombreApellido} />
+                            ))
+                        }
+                    </datalist>
+
                 </div>
 
                 {/* Monto */}
