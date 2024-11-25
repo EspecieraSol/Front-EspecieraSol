@@ -71,7 +71,13 @@ function Remito({
                 text: "Ingrese Cond.venta",
                 icon: 'error'
             });
-        }else if(!bultosActual){
+        }/* else if(!data.estado){
+            Swal.fire({
+                title: 'Faltan datos !!',
+                text: "Ingrese Estado",
+                icon: 'error'
+            });
+        } */else if(!bultosActual){
             Swal.fire({
                 title: 'Faltan datos !!',
                 text: "Ingrese Cant de Bultos",
@@ -126,7 +132,7 @@ function Remito({
             </tr>
         ));
 
-        for (let i = rows?.length; i < 9; i++) {
+        for (let i = rows?.length; i < 14; i++) {
             rows.push(
                 <tr key={`empty-${i}`}>
                     <td>&nbsp;</td>
@@ -318,29 +324,6 @@ function Remito({
                                                 className={operacion === 'venta' && !data.condicion_pago ? 'input-remito-SinCondicionPago' : 'input-remito-condicionPago'}
                                             />
                                         </div>
-                                        {/* estado */}
-                                        {/* <div className='cont-estado'>
-                                            <label className='lable-remito-condicion'>Estado:</label>
-                                            <select
-                                                id='estado'
-                                                onChange={handleOnChange}
-                                                className={operacion === 'venta' && !data.estado ? 'input-remito-sinEstado' : 'input-remito-estado'}>
-                                                {
-                                                    operacion === "venta" ?
-                                                        (
-                                                            <>
-                                                                <option>Elija estado</option>
-                                                                <option value={'Debe'}>Deudor</option>
-                                                                <option value={'Pagado'}>Pagado</option>
-                                                            </>
-                                                        ) : (
-                                                            <>
-                                                                <option>{remitoAmostrar.estado}</option>
-                                                            </>
-                                                        )
-                                                }
-                                            </select>
-                                        </div> */}
                                     </>
                                 ) : (
                                     <div className='cont-p-cond-pago-y-estado'>
@@ -367,40 +350,6 @@ function Remito({
                             </thead>
                             <tbody>
                                 {renderRows()}
-                                {/* fila saldo anterior */}
-                                {/* <tr> 
-                                    <td></td>
-                                    <td>Saldo anterior</td>
-                                    <td></td>
-                                    <td>${formatMoney(saldoAnt)}</td>
-                                </tr> */}
-                                {/* fila tranporte */}
-                                {/* <tr> 
-                                    <td></td>
-                                    <td>
-                                        <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-                                            <label>Transp:</label>
-                                            {
-                                                operacion === 'venta' ?
-                                                    <input
-                                                        type='text'
-                                                        id='trasporte'
-                                                        value={transporteActual}
-                                                        onChange={(e) => handleChangeTransporte(e)}
-                                                        placeholder='Ingresar Aquí'
-                                                        className={operacion === 'venta' && !transporteActual ? 'sin-transporte' : 'input-transporte'}
-                                                    /> :
-                                                    <p
-                                                        style={{ margin: '0', padding: '5px' }}
-                                                    >
-                                                        {transporte}
-                                                    </p>
-                                            }
-                                        </div>                                        
-                                    </td>
-                                    <td></td>
-                                    <td></td>
-                                </tr> */}
                             </tbody>
                             <tfoot className='celda-total-cifra'>
                                 <tr className="total-row">
