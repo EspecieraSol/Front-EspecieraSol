@@ -59,7 +59,7 @@ function TablaVentas({ ventas, cuit }) {
                     <th>Debe</th>
                     <th>Haber</th>
                     <th>Saldo</th>
-                    <th>Detalle Saldo</th>
+                    
                     <th>Cond. de Pago</th>
                     <th>Ver</th>
                     <th>Edita/Elim</th>
@@ -77,7 +77,7 @@ function TablaVentas({ ventas, cuit }) {
                         <td className={r.saldo >= 0 ? 'saldo-positivo' : 'saldo-negativo'}>
                             {formatMoney(r.saldo)}
                         </td>
-                        <td >{r.saldoText}</td>
+                        
                         <td >{r.condicion_pago}</td>
                         <td>
                             <NavLink to={`/detalleRemitoVenta/${r._id}`}>
@@ -118,7 +118,7 @@ function TablaVentas({ ventas, cuit }) {
                     <td className={totalSaldo}>
                         ${formatMoney(totalSaldo)}
                     </td>
-                    <td colSpan="4"></td>
+                    <td colSpan="3"></td>
                 </tr>
             </tfoot>
         </table>

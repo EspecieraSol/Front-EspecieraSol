@@ -7,9 +7,7 @@ import Swal from 'sweetalert2';
 import './estilos.css';
 
 
-function Remito({ 
-    operacion, fecha, numUltimoRemito, cliente, clienteExiste, items, totPedido, bultos, /* transporte ,*/ /* saldoAnt */ 
-}) { 
+function Remito({ operacion, fecha, numUltimoRemito, cliente, clienteExiste, items, totPedido, bultos }) { 
 
     let nuevoNumeroRemito = 0; 
     let fechaAct;
@@ -145,10 +143,9 @@ function Remito({
             dispatch(calcSaldoAnterior(cliente?.cuit));  
         }
     },[cliente?.cuit, dispatch]);
-
+    // efecto para Código para limpiar los inputs
     useEffect(() => {
         if (!clienteExiste) {
-            // Código para limpiar los inputs
             document.getElementById('nombre').value = '';
             document.getElementById('apellido').value = '';
             document.getElementById('direccion').value = '';
