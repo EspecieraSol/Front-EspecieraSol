@@ -80,19 +80,7 @@ function ListaDePrecios() {
                                     </tbody>
                                 </table>
                             </div>
-                            {/* info contactos */}
-                            <div className='info-contacto-lita-precio'>
-                                <div className='cont-info-contacto'>
-                                    <p className='item-info-contacto-lista-precio'>Cel: 11 41997200 Gustavo</p>
-                                    <p className='item-info-contacto-lista-precio'>Cel: 11 59510493 Florencia</p>
-                                </div>
-                                <div className='cont-info-contacto'>
-                                    <p className='item-info-contacto-lista-precio'>www.especieradelsol.com</p>
-                                    <p className='item-info-contacto-lista-precio'>info@especieradelsol.com</p>
-                                    <p className='item-info-contacto-lista-precio'>Intagram: @especieradelsol</p>
-                                    <p className='item-info-contacto-lista-precio'>Facebook: Especiera del Sol</p>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>

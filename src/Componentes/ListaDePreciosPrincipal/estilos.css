@@ -114,6 +114,7 @@
     align-items: center;
     margin-left: 30px;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 .cont-info-contacto{
     display: flex;
@@ -125,7 +126,9 @@
     color: rgb(66, 68, 68);
     margin: 0;
 }
-
+.boton-imprimir{
+    margin-bottom: 10px;
+}
 /* responsive */
 @media screen and (max-width: 800px){
     .cont-padre-lista-precios{
