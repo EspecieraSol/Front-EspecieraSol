@@ -20,7 +20,7 @@ function FormularioPagoCliente({ tipoR }) {
         tipoRemito: 'Pago',
         totPedido: 0,
         condicion_pago: '',
-    });
+    }); console.log("items:",items);
 
     // Función para formatear la fecha a 'YYYY-MM-DD'
     const obtenerFechaActual = () => {
@@ -111,6 +111,20 @@ function FormularioPagoCliente({ tipoR }) {
         }
     }, [_id, dispatch, tipoR]);
 
+    //si tengo un cliente seleccionado, cargo el cuit en el formulario
+    useEffect(() => {
+        if(nombreApellido){
+            const dataCliente = clientes.find((c) => c.nombreApellido === nombreApellido);
+            if (dataCliente) {
+                setItems({ ...items, cuit: dataCliente.cuit });
+            }else{
+                setItems({ ...items, cuit: 0 });
+            }
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [nombreApellido, clientes]);
+
+    //para que se carguen los datos del remito en el formulario SI es un pago a modificar
     useEffect(() => {
         if (tipoR === 'Pago' && remitoPago._id) {
             setItems({
