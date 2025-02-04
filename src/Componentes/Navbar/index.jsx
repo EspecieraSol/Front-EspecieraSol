@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { resetLogin, } from '../../Redux/Actions';
-import logo from '../../Imagenes/logoNuevo.jpg';
 import { Link, useNavigate } from 'react-router-dom';
 import { AppContexto } from '../../Contexto';
 import { logout } from '../../LocalStorage';
+import logo from '../../Imagenes/logoNuevo.jpg';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import Swal from 'sweetalert2';
@@ -14,11 +14,12 @@ import './estilos.css';
 const Navbar = () => {
 
     const [muestraMenuClientes, setMuestraMenuClientes] = useState(false); //estado menú cliente
-    const [muestraMenuProductos, setMuestraMenuProductos] = useState(false); //estado menú prod
-    const [muestraMenuProveedor, setMuestraMenuProveedor] = useState(false); //estado menú proveedor
-    const [muestraMenuCompras, setMuestraMenuCompras] = useState(false); //estado menú compras
-    const [muestraMenuVentas, setMuestraMenuVentas] = useState(false); //estado menú ventas
-    const [muestraMenuReportes, setMuestraMenuReportes] = useState(false); //estado menú reportes
+    const [muestraMenuProductos, setMuestraMenuProductos] = useState(false); 
+    const [muestraMenuProveedor, setMuestraMenuProveedor] = useState(false); 
+    const [muestraMenuCompras, setMuestraMenuCompras] = useState(false); 
+    const [muestraMenuVentas, setMuestraMenuVentas] = useState(false); 
+    const [muestraMenuGastos, setMuestraMenuGastos] = useState(false); 
+    const [muestraMenuReportes, setMuestraMenuReportes] = useState(false);
     const contexto = useContext(AppContexto);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -52,6 +53,12 @@ const Navbar = () => {
     };
     const handleMouseLeaveVentas = () => {
         setMuestraMenuVentas(false);
+    };
+    const handleMouseEnterGastos = () => {
+        setMuestraMenuGastos(true);
+    };
+    const handleMouseLeaveGastos = () => {
+        setMuestraMenuGastos(false);
     };
     const handleMouseEnterReportes = () => {
         setMuestraMenuReportes(true);
@@ -199,6 +206,26 @@ const Navbar = () => {
                                     )
                                 }
                             </li>
+                            {/* Gastos */}
+                            <li
+                                className="navbar-item"
+                                onMouseEnter={handleMouseEnterGastos}
+                                onMouseLeave={handleMouseLeaveGastos}
+                            >
+                                Gastos
+                                {
+                                    muestraMenuGastos && (
+                                        <ul className="dropdown-menu">
+                                            <Link to="/creaGastos" className='link-menu'>
+                                                <li className="dropdown-item">Crear Gastos</li>
+                                            </Link>
+                                            <Link to="/listaGastosPorDia" className='link-menu'>
+                                                <li className="dropdown-item">Lista gastos por mes</li>
+                                            </Link>
+                                        </ul>
+                                    )
+                                }
+                            </li>
                             {/* Reportes */}
                             <li
                                 className="navbar-item"
@@ -209,9 +236,6 @@ const Navbar = () => {
                                 {
                                     muestraMenuReportes && (
                                         <ul className="dropdown-menu">
-                                            <Link to="/creaGastos" className='link-menu'>
-                                                <li className="dropdown-item">Crear Gastos</li>
-                                            </Link>
                                             <Link to="/listaReportes" className='link-menu'>
                                                 <li className="dropdown-item">Lista Reportes</li>
                                             </Link>

@@ -33,7 +33,9 @@ import ListaDePreciosEspecialPage from './Pages/ListaDePreciosEspecial';
 import CuentaCorrienteClientePage from './Pages/CuentaCorrienteClientePage';
 import CreaPagoCliente from './Pages/CreaPagoCliente';
 import EditaPagoRemito from './Pages/EditaPagoRemito';
+import ListaGastosPorDiaPage from './Pages/ListaGastosPorDiaPage';
 import './App.css';
+
 
 
 function App() {
@@ -62,7 +64,7 @@ function App() {
             <Route path='/remitosProveedor/:cuit' element={<ListaRemitosProveedorPage />} />
             <Route path='/creaVenta' element={<CreaRemitoVentaPage />} />
             <Route path='/detalleRemito/:_id' element={<DetalleRemitoPage />} />
-            <Route path='/detalleRemitoVenta/:_id' element={<DetalleRemitoVenta />} />{/* nuevo */}
+            <Route path='/detalleRemitoVenta/:_id' element={<DetalleRemitoVenta />} />
             <Route path='/detalleRemitoCompra/:_id' element={<DetalleRemitoCompraPage />} />
             <Route path='/editaRemito/:_id' element={<EditaRemitoPage />} />
             <Route path='/creaPago' element={<CreaPagoProveedor />} />
@@ -72,6 +74,7 @@ function App() {
             <Route path='/editaRemitoCompra/:_id' element={<EditaRemitoCompraPage />} />
             <Route path='/listaRemitosVentas' element={<ListaRemitosVentas />} />
             <Route path='/creaGastos' element={<CreaGastoPage />} />
+            <Route path='/listaGastosPorDia' element={<ListaGastosPorDiaPage/>} />
             <Route path='/listaReportes' element={<ListaReportesPage />} />
             <Route path='/listaDePrecios' element={<ListaDePreciosPage />} />
             <Route path='/quienesSomos' element={<QuienesSomosPage />} />

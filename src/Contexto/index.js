@@ -28,8 +28,6 @@ export const AppProvider = ({children}) => {
     const[modalEntregaCliente, setModalEntregaCliente] = useState(false);
     //estado modal edita entrega 
     const[modalEditaEntrega, setModalEditaEntrega] = useState(false);
-    //estado modal modif Gasto
-    const[modalModifGasto, setModalModifGasto] = useState(false);
     //estado para el SEARCH
     const [search, setSearch] = useState(''); 
 
@@ -68,8 +66,6 @@ export const AppProvider = ({children}) => {
                 setModalEntregaCliente,
                 modalEditaEntrega,
                 setModalEditaEntrega,
-                modalModifGasto,
-                setModalModifGasto,
                 search,
                 setSearch,
                 isAuthenticated,

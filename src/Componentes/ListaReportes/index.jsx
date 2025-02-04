@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getReporteMesesAño, getReporteMes } from '../../Redux/Actions';
-import Swal from 'sweetalert2';
 import { formatMoney } from '../../Helpers';
+import Swal from 'sweetalert2';
 import './estilos.css';
 
 
@@ -10,9 +10,9 @@ function ListaReportes() {
   const reporteMesesAño = useSelector(state => state.reporteMesesAño);
   const reporteMes = useSelector(state => state.reporteMes);
   const [muestraTablaMes, setMuestraTablaMes] = useState(false); 
-  let newReporteMes;
   const [mes, setMes] = useState("");
   const [año, setAño] = useState("");
+  let newReporteMes;
   const month = "";
   let meses = true;
   const dispatch = useDispatch();
@@ -115,7 +115,7 @@ function ListaReportes() {
     return updatedData;
 };
 
-  newReporteMes = generoReporteMes();
+  newReporteMes = generoReporteMes(); 
 
   return (
     <div className='cont-reportes'>

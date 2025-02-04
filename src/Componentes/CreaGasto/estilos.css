@@ -7,7 +7,7 @@
     align-items: center;
 }
 .cont-form-creaGasto{
-    width: 90%;
+    width: 70%;
     height: auto;
     display: flex;
     justify-content: center;
@@ -52,4 +52,6 @@
     font-weight: 600;
     border-radius: 10px;
     cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
